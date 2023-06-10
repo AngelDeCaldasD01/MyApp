@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { Pokedex } from '../screens';
+import { Pokedex } from '..';
 
 const Stack = createStackNavigator();
 
