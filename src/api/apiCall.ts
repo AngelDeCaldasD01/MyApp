@@ -1,6 +1,3 @@
-import { useState } from "react";
-
-
 type TApiCallOptions = {
     url: string;
     method?: 'GET' | 'DELETE' | 'POST' | 'PUT';
