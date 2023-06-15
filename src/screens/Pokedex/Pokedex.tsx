@@ -1,15 +1,11 @@
 import { Text, View } from "react-native";
-import pokedexStore from "../../api/pokedexStore";
+import pokedexStore from "../../api/PokedexStoree";
 import { useEffect } from "react";
 import Toast from "react-native-toast-message";
 
 export default function Pokedex() {
     const {list, getList} = pokedexStore();
-    useEffect(() => {getList(); Toast.show({
-        type: 'info',
-        text1: 'Se han cargado los 20 primeros',
-        visibilityTime: 4000
-    })  }, [])
+    useEffect(() => {getList()}, [])
     console.log(list)
     return (
         <View>{list.map(({name}) => {return <Text key={name}>{name}</Text>})}<Toast
