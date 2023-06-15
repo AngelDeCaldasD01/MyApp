@@ -1,12 +1,10 @@
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Account, Pokedex, Favorite } from '../screens';
-import { API_KEY } from '@env';
 
 const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
-  console.log(API_KEY)
 
     return (
         <Tab.Navigator>

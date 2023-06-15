@@ -1,16 +1,29 @@
-import { Text, View } from "react-native";
-import pokedexStore from "../../api/PokedexStoree";
+import { View, FlatList } from "react-native";
+import pokedexStore, { IPokemon } from "../../api/PokedexStore";
 import { useEffect } from "react";
-import Toast from "react-native-toast-message";
+import PokemonCard from "../../components/PokemonCard";
 
 export default function Pokedex() {
-    const {list, getList} = pokedexStore();
-    useEffect(() => {getList()}, [])
-    console.log(list)
+    const {list, getList, getItems, listCard} = pokedexStore();
+    useEffect(() => {getList().then(() => {
+        getItems()
+    })}, [])
+    console.log(listCard)
+
+    const renderItem = ({item}:{item: IPokemon}) => {
+        return <PokemonCard id={item.id} name={item.name} order={item.order} imageUrl={item.imageUrl} type={""}/>
+    }
+
     return (
-        <View>{list.map(({name}) => {return <Text key={name}>{name}</Text>})}<Toast
-        position='bottom'
-        bottomOffset={20}
-      /></View>
+        // <View>{list.map(({name}) => {return <Text key={name}>{name}</Text>})}</View>
+        <View>
+            <FlatList 
+                data={listCard}
+                numColumns={2}
+                renderItem={renderItem}
+                columnWrapperStyle={{ justifyContent: "space-between" }}
+                keyExtractor={(item) => item.id.toString()}
+            />
+        </View>
     )
 }
