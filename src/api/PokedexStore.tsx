@@ -22,7 +22,7 @@ const pokedexStore = create<TPokedex>((set, get) => ({
     listCard: [],
     getList: async () => {
         try {
-            const result = await apiCall({url: `${API_URL}pokemon?limit=20&offset=0`})
+            const result = await apiCall({url: `${API_URL}/pokemon?limit=20&offset=0`})
             set({ list: result.results }); 
         } catch (error: any){
             throw error
@@ -37,6 +37,7 @@ const pokedexStore = create<TPokedex>((set, get) => ({
                 results.push({
                     id: result.id,
                     name: result.name,
+                    // type: result.types.map((x: any, index: number) => x[index]),
                     type: result.types[0].type.name,
                     order: result.order,
                     imageUrl: result.sprites.other["official-artwork"].front_default
