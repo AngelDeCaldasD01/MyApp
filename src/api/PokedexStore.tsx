@@ -5,7 +5,7 @@ import apiCall from './ApiCall';
 export interface IPokemon {
     id: string;
     name: string;
-    type: string;
+    types: string[];
     order: string;
     imageUrl: string;
 }
@@ -37,8 +37,11 @@ const pokedexStore = create<TPokedex>((set, get) => ({
                 results.push({
                     id: result.id,
                     name: result.name,
-                    // type: result.types.map((x: any, index: number) => x[index]),
-                    type: result.types[0].type.name,
+                    type: result.types.map((x: any, index: number) => {
+                        console.log(x)
+                        return x.type.name
+                    }),
+                    // type: result.types[0],
                     order: result.order,
                     imageUrl: result.sprites.other["official-artwork"].front_default
                   })

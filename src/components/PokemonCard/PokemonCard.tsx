@@ -21,11 +21,14 @@ export default function PokemonCard(props:IPokemon) {
         <TouchableWithoutFeedback onPress={goToPokemon}>
             <View style={cardStyles.cardContainer}>
                 <View style={cardStyles.spacing}>
-                <Text >
-                {`${order}`.padStart(3, '0')}
-                </Text>
-                    <Text>#{`${order} ${name}`}</Text>
-                    <Image style={{width: 30, height: 30}} source={{ uri: imageUrl }} />
+                    <Text style={cardStyles.orderText}>
+                        #{`${order}`.padStart(3, '0')}
+                    </Text>
+                    <Text style={cardStyles.orderText}>
+                        {type}
+                    </Text>
+                    <Text style={cardStyles.nameText}>{name}</Text>
+                    <Image style={cardStyles.cardImage} source={{ uri: imageUrl }} />
                 </View>
             </View>
         </TouchableWithoutFeedback>

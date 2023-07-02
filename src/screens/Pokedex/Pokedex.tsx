@@ -13,12 +13,8 @@ export default function Pokedex() {
     console.log(listCard)
 
     const renderItem = ({item}:{item: IPokemon}) => {
-        return <PokemonCard id={item.id} name={item.name} order={item.order} imageUrl={item.imageUrl} type={""}/>
+        return <PokemonCard id={item.id} name={item.name} order={item.order} imageUrl={item.imageUrl} types={item.types}/>
     }
-
-    const renderSeparator = () => {
-        return <View style={{width: 5, backgroundColor: 'white'}} />;
-      };
 
     return (
         // <View>{list.map(({name}) => {return <Text key={name}>{name}</Text>})}</View>
@@ -28,10 +24,9 @@ export default function Pokedex() {
                 numColumns={2}
                 renderItem={renderItem}
                 showsVerticalScrollIndicator={false}
-                columnWrapperStyle={{ justifyContent: "space-between" }}
+                columnWrapperStyle={pokedexStyles.flatListColumnWrapper}
                 keyExtractor={(item) => item.id.toString()}
-                contentContainerStyle={pokedexStyles.flatList}
-                ItemSeparatorComponent={renderSeparator}
+                contentContainerStyle={pokedexStyles.flatListContainer}
             />
         </View>
     )

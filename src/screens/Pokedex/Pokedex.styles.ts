@@ -1,9 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 const pokedexStyles = StyleSheet.create<any>({
-    flatList: {
-        paddingHorizontal: 5,
-        gap: 4
+    flatListContainer: {
+        paddingHorizontal: 12,
+        paddingVertical: 12,
+        gap: 12
+    },
+    flatListColumnWrapper: {
+        justifyContent: "space-between", 
+        gap: 12
     }
 });
 
