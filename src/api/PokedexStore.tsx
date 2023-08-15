@@ -13,17 +13,30 @@ export interface IPokemon {
 type TPokedex = {
     list: any[];
     listCard: any[];
-    getList: () => Promise<any>;
+    offset: number;
+    limit: number;
+    getList: () => Promise<void>;
     getItems: () => Promise<void>;
 }
 
 const pokedexStore = create<TPokedex>((set, get) => ({
     list: [],
     listCard: [],
+    offset: 0,
+    limit: 20,
     getList: async () => {
         try {
-            const result = await apiCall({url: `${API_URL}/pokemon?limit=20&offset=0`})
-            set({ list: result.results }); 
+            const offset = get().offset;
+            const limit = get().limit;
+
+            set({offset: offset + limit})
+
+            const result = await apiCall({url: `${API_URL}/pokemon?limit=${limit}&offset=${offset}`})
+            const newPokemon = result.results;
+            set((state) => ({list: newPokemon}));
+            console.log(get().list)
+
+            // set({ list: result.results }); 
         } catch (error: any){
             throw error
         }   
@@ -37,7 +50,7 @@ const pokedexStore = create<TPokedex>((set, get) => ({
                 results.push({
                     id: result.id,
                     name: result.name,
-                    type: result.types.map((x: any, index: number) => {
+                    types: result.types.map((x: any, index: number) => {
                         console.log(x)
                         return x.type.name
                     }),

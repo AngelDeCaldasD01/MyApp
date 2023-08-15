@@ -5,7 +5,7 @@ import Toast from "react-native-toast-message";
 import cardStyles from "./PokemonCard.styled"
 
 export default function PokemonCard(props:IPokemon) {
-    const {name, order, imageUrl, type} = props;
+    const {name, order, imageUrl, types} = props;
 
     const goToPokemon = () => {
         console.log(`Vamos al pokemon: ${name}`);
@@ -17,6 +17,8 @@ export default function PokemonCard(props:IPokemon) {
           });
       };
 
+      console.log(types)
+
     return (
         <TouchableWithoutFeedback onPress={goToPokemon}>
             <View style={cardStyles.cardContainer}>
@@ -25,8 +27,11 @@ export default function PokemonCard(props:IPokemon) {
                         #{`${order}`.padStart(3, '0')}
                     </Text>
                     <Text style={cardStyles.orderText}>
-                        {type}
+                        {types[0]}
                     </Text>
+                    {types[1] && <Text style={cardStyles.orderText}>
+                        {types[1]}
+                    </Text>}
                     <Text style={cardStyles.nameText}>{name}</Text>
                     <Image style={cardStyles.cardImage} source={{ uri: imageUrl }} />
                 </View>
