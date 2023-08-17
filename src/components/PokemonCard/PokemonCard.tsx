@@ -17,8 +17,6 @@ export default function PokemonCard(props:IPokemon) {
           });
       };
 
-      console.log(types)
-
     return (
         <TouchableWithoutFeedback onPress={goToPokemon}>
             <View style={cardStyles.cardContainer}>

@@ -9,6 +9,11 @@ const pokedexStyles = StyleSheet.create<any>({
     flatListColumnWrapper: {
         justifyContent: "space-between", 
         gap: 12
+    },
+    spinner: {
+        marginTop: 20,
+        marginBottom: 60,
+        color: "red"
     }
 });
 

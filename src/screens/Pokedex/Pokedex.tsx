@@ -1,5 +1,5 @@
-import React from "react";
-import { View, FlatList } from "react-native";
+import React, { useState } from "react";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import pokedexStore, { IPokemon } from "../../api/PokedexStore";
 import { useEffect } from "react";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
@@ -7,17 +7,32 @@ import pokedexStyles from './Pokedex.styles';
 
 export default function Pokedex() {
     const {getList, getItems, listCard} = pokedexStore();
-    useEffect(() => {getList().then(() => {
-        getItems()
-    })}, [])
-    console.log(listCard)
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+    // useEffect(() => {
+    //     getList().
+    //         then(() => {
+    //             getItems()
+    //         });
+    // }, [])
 
     const renderItem = ({item}:{item: IPokemon}) => {
         return <PokemonCard id={item.id} name={item.name} order={item.order} imageUrl={item.imageUrl} types={item.types}/>
     }
 
+    const loadMore = () => {
+        if (isLoadingMore) return; 
+          
+        setIsLoadingMore(true);
+        getList().
+            then(() => {
+                getItems()
+            }).finally(() => {
+                setIsLoadingMore(false);
+              });
+    }
+
     return (
-        // <View>{list.map(({name}) => {return <Text key={name}>{name}</Text>})}</View>
         <View>
             <FlatList 
                 data={listCard}
@@ -27,6 +42,10 @@ export default function Pokedex() {
                 columnWrapperStyle={pokedexStyles.flatListColumnWrapper}
                 keyExtractor={(item) => item.id.toString()}
                 contentContainerStyle={pokedexStyles.flatListContainer}
+                onEndReached={loadMore}
+                onEndReachedThreshold={0.1}
+                ListFooterComponent={<ActivityIndicator size="large" color="#AEAEAE"/>}
+                ListFooterComponentStyle={pokedexStyles.spinner}
             />
         </View>
     )
