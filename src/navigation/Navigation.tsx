@@ -18,11 +18,11 @@ export default function Navigation() {
         }}
       />
       <Tab.Screen
-        name="Pokedex"
+        name="PokedexNavigation"
         component={PokedexNavigation}
         options={{
           tabBarLabel: 'Pokedex',
-          headerTitle: 'Pokedex',
+          headerShown: false,
           headerTitleStyle: {
             width: '100%',
             display: 'flex',

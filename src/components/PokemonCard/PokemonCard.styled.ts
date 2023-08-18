@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const cardStyles = StyleSheet.create<any>({
+const cardStyles = StyleSheet.create({
   cardContainer: {
     flex: 1,
     height: 110,

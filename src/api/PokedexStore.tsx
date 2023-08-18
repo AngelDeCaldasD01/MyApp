@@ -48,7 +48,7 @@ const pokedexStore = create<TPokedex>((set, get) => ({
           types: result.types.map((x: any) => {
             return x.type.name;
           }),
-          order: result.id,
+          order: Number(result.id),
           imageUrl: result.sprites.other['official-artwork'].front_default,
         });
       }
