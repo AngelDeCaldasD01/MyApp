@@ -1,4 +1,3 @@
-/*eslint no-useless-catch: "error"*/
 import {create} from 'zustand';
 import {API_URL} from '@env';
 import apiCall from './ApiCall';
@@ -23,6 +22,7 @@ const pokedexStore = create<TPokedex>((set, get) => ({
   listCard: [],
   getList: async () => {
     try {
+      console.log(get().nextCall);
       const result = await apiCall({
         url: get().nextCall ?? `${API_URL}/pokemon?limit=20&offset=0`,
       });

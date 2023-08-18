@@ -1,34 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {View, FlatList, ActivityIndicator} from 'react-native';
 import pokedexStore, {IPokemon} from '../../api/PokedexStore';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import pokedexStyles from './Pokedex.styles';
 
-export default function Pokedex() {
+function Pokedex() {
   const {getList, getItems, listCard, nextCall} = pokedexStore();
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  console.log(nextCall);
-  // useEffect(() => {
-  //     getList().
-  //         then(() => {
-  //             getItems()
-  //         });
-  // }, [])
-
-  const renderItem = ({item}: {item: IPokemon}) => {
-    return (
-      <PokemonCard
-        id={item.id}
-        name={item.name}
-        order={item.order}
-        imageUrl={item.imageUrl}
-        types={item.types}
-      />
-    );
-  };
-
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     if (isLoadingMore) return;
 
     setIsLoadingMore(true);
@@ -39,7 +19,19 @@ export default function Pokedex() {
       .finally(() => {
         setIsLoadingMore(false);
       });
-  };
+  }, [isLoadingMore, getList, getItems]);
+
+  const renderItem = useCallback(({item}: {item: IPokemon}) => {
+    return (
+      <PokemonCard
+        id={item.id}
+        name={item.name}
+        order={item.order}
+        imageUrl={item.imageUrl}
+        types={item.types}
+      />
+    );
+  }, []);
 
   return (
     <View>
@@ -63,3 +55,5 @@ export default function Pokedex() {
     </View>
   );
 }
+
+export default Pokedex;

@@ -1,13 +1,16 @@
 import React from 'react';
-import {Image, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Text, TouchableWithoutFeedback, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {IPokemon} from '../../api/PokedexStore';
 import Toast from 'react-native-toast-message';
 import cardStyles from './PokemonCard.styled';
 import {getColorByPokemonType} from '../../utils/getColorByPokemonType';
 import {TPOKEMON_TYPE_COLORS} from '../../utils/pokemonTypeColors';
+import {useNavigation} from '@react-navigation/native';
 
 export default function PokemonCard(props: IPokemon) {
   const {name, order, imageUrl, types} = props;
+  const navigation = useNavigation();
 
   const goToPokemon = () => {
     Toast.show({
@@ -16,6 +19,7 @@ export default function PokemonCard(props: IPokemon) {
       autoHide: true,
       visibilityTime: 2000,
     });
+    navigation.navigate('Pokemon', {id: order});
   };
 
   return (
@@ -37,7 +41,11 @@ export default function PokemonCard(props: IPokemon) {
           {types[1] && <Text style={cardStyles.orderText}>{types[1]}</Text>}
           <Text style={cardStyles.nameText}>{name}</Text>
           {imageUrl && (
-            <Image style={cardStyles.cardImage} source={{uri: imageUrl}} />
+            <FastImage
+              style={cardStyles.cardImage}
+              source={{uri: imageUrl}}
+              resizeMode={FastImage.resizeMode.contain}
+            />
           )}
         </View>
       </View>
