@@ -3,21 +3,42 @@ import {StyleSheet} from 'react-native';
 const pokemonHeaderStyles = StyleSheet.create({
   bg: {
     width: '100%',
-    height: 400,
+    height: '100%',
     position: 'absolute',
-    borderBottomEndRadius: 300,
-    borderBottomLeftRadius: 300,
-    transform: [{scaleX: 2}],
+    // borderBottomEndRadius: 300,
+    // borderBottomLeftRadius: 300,
+    // transform: [{scaleX: 2}],
   },
   content: {
     marginHorizontal: 20,
-    marginTop: 30,
+    marginTop: 10,
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  headerContainer: {
+    flexDirection: 'column',
     paddingTop: 40,
+    gap: 8,
+  },
+  headerTitle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  headerSubtitle: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  subtitleType: {
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 2,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  subtitleTypeText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 12,
   },
   name: {
     color: '#fff',
@@ -27,17 +48,17 @@ const pokemonHeaderStyles = StyleSheet.create({
   order: {
     color: '#fff',
     fontWeight: 'bold',
+    alignSelf: 'flex-end',
+    fontSize: 16,
   },
   contentImg: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    top: 30,
   },
   image: {
     width: 250,
     height: 300,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
   },
 });
 

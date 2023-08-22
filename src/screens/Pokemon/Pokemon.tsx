@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, ScrollView} from 'react-native';
+import {ActivityIndicator, ScrollView, View} from 'react-native';
+import pokemonStyles from './Pokemon.styles';
 import pokemonStore from '../../api/PokemonStore';
 import PokemonHeader from '../../components/PokemonHeader/PokemonHeader';
+import PokemonInfo from '../../components/PokemonInfo/PokemonInfo';
 
 export default function Pokemon(props: any) {
   const {
@@ -27,23 +29,39 @@ export default function Pokemon(props: any) {
   console.log(isLoadingMore);
 
   return (
-    <ScrollView>
-      {isLoadingMore ? (
+    <ScrollView style={{flex: 2, height: '100%', backgroundColor: 'red'}}>
+      {/* {isLoadingMore ? (
         <ActivityIndicator size="large" color="#AEAEAE" />
       ) : (
-        <PokemonHeader
-          id={params.id}
-          name={detailPokemon.name}
-          order={detailPokemon.order}
-          imageUrl={
-            detailPokemon.sprites.other['official-artwork'].front_default
-          }
-          types={[
-            detailPokemon.types[0].type.name,
-            detailPokemon?.types[1]?.type?.name,
-          ]}
-        />
-      )}
+        <View style={{flex: 1, height: '100%'}}>
+          <PokemonHeader
+            id={params.id}
+            name={detailPokemon.name}
+            order={detailPokemon.order}
+            imageUrl={
+              detailPokemon?.sprites?.other['official-artwork']?.front_default
+            }
+            types={[
+              detailPokemon.types[0].type.name,
+              detailPokemon?.types[1]?.type?.name,
+            ].filter(Boolean)}
+          />
+          <PokemonInfo />
+        </View>
+      )} */}
+      <PokemonHeader
+        id={params.id}
+        name={detailPokemon.name}
+        order={detailPokemon.order}
+        imageUrl={
+          detailPokemon?.sprites?.other['official-artwork']?.front_default
+        }
+        types={[
+          detailPokemon.types[0].type.name,
+          detailPokemon?.types[1]?.type?.name,
+        ].filter(Boolean)}
+      />
+      <PokemonInfo />
     </ScrollView>
   );
 }

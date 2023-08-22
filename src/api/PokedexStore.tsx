@@ -22,7 +22,6 @@ const pokedexStore = create<TPokedex>((set, get) => ({
   listCard: [],
   getList: async () => {
     try {
-      console.log(get().nextCall);
       const result = await apiCall({
         url: get().nextCall ?? `${API_URL}/pokemon?limit=20&offset=0`,
       });
@@ -48,7 +47,7 @@ const pokedexStore = create<TPokedex>((set, get) => ({
           types: result.types.map((x: any) => {
             return x.type.name;
           }),
-          order: Number(result.id),
+          order: result.id,
           imageUrl: result.sprites.other['official-artwork'].front_default,
         });
       }
