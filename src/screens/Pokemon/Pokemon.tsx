@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, ScrollView, View} from 'react-native';
+import {ActivityIndicator, SafeAreaView, ScrollView, View} from 'react-native';
 import pokemonStyles from './Pokemon.styles';
 import pokemonStore from '../../api/PokemonStore';
 import PokemonHeader from '../../components/PokemonHeader/PokemonHeader';
@@ -29,11 +29,11 @@ export default function Pokemon(props: any) {
   console.log(isLoadingMore);
 
   return (
-    <ScrollView style={{flex: 2, height: '100%', backgroundColor: 'red'}}>
-      {/* {isLoadingMore ? (
+    <ScrollView contentContainerStyle={{flex: 1}}>
+      {isLoadingMore ? (
         <ActivityIndicator size="large" color="#AEAEAE" />
       ) : (
-        <View style={{flex: 1, height: '100%'}}>
+        <SafeAreaView style={{flex: 1}}>
           <PokemonHeader
             id={params.id}
             name={detailPokemon.name}
@@ -42,26 +42,13 @@ export default function Pokemon(props: any) {
               detailPokemon?.sprites?.other['official-artwork']?.front_default
             }
             types={[
-              detailPokemon.types[0].type.name,
+              detailPokemon?.types[0].type.name,
               detailPokemon?.types[1]?.type?.name,
             ].filter(Boolean)}
           />
           <PokemonInfo />
-        </View>
-      )} */}
-      <PokemonHeader
-        id={params.id}
-        name={detailPokemon.name}
-        order={detailPokemon.order}
-        imageUrl={
-          detailPokemon?.sprites?.other['official-artwork']?.front_default
-        }
-        types={[
-          detailPokemon.types[0].type.name,
-          detailPokemon?.types[1]?.type?.name,
-        ].filter(Boolean)}
-      />
-      <PokemonInfo />
+        </SafeAreaView>
+      )}
     </ScrollView>
   );
 }

@@ -1,60 +1,37 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import pokemonInfoStyles from './PokemonInfo.styled';
+import Tabs from '../Tabs/Tabs';
 
 export default function PokemonInfo() {
-  const [selectedTab, setSelectedTab] = useState('Tab1');
+  const tabs = ['Tab 1', 'Tab 2', 'Tab 3'];
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
 
-  const handleTabPress = (tabName: string) => {
-    setSelectedTab(tabName);
+  const handleTabPress = (index: number) => {
+    setActiveTabIndex(index);
   };
+
+  const tabViews = [
+    <View
+      key={0}
+      style={{
+        backgroundColor: 'cyan',
+        flex: 1,
+        justifyContent: 'flex-end',
+      }}>
+      <Text>Contenido de Tab 1</Text>
+    </View>,
+    <View key={1}>
+      <Text>Contenido de Tab 2</Text>
+    </View>,
+    <View key={2}>
+      <Text>Contenido de Tab 3</Text>
+    </View>,
+  ];
+
   return (
     <View style={pokemonInfoStyles.bg}>
-      <View style={pokemonInfoStyles.tabsContainer}>
-        <TouchableOpacity
-          style={[
-            pokemonInfoStyles.tab,
-            selectedTab === 'Tab1' && pokemonInfoStyles.selectedTab,
-          ]}
-          onPress={() => handleTabPress('Tab1')}>
-          <Text style={pokemonInfoStyles.tabText}>Tab 1</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            pokemonInfoStyles.tab,
-            selectedTab === 'Tab2' && pokemonInfoStyles.selectedTab,
-          ]}
-          onPress={() => handleTabPress('Tab2')}>
-          <Text style={pokemonInfoStyles.tabText}>Tab 2</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[
-            pokemonInfoStyles.tab,
-            selectedTab === 'Tab3' && pokemonInfoStyles.selectedTab,
-          ]}
-          onPress={() => handleTabPress('Tab3')}>
-          <Text style={pokemonInfoStyles.tabText}>Tab 3</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Contenido específico del tab seleccionado */}
-      {selectedTab === 'Tab1' && (
-        <View>
-          <Text>Contenido de Tab 1</Text>
-        </View>
-      )}
-      {selectedTab === 'Tab2' && (
-        <View>
-          <Text>Contenido de Tab 2</Text>
-        </View>
-      )}
-      {selectedTab === 'Tab3' && (
-        <View>
-          <Text>Contenido de Tab 3</Text>
-        </View>
-      )}
+      <Tabs tabs={tabs} onTabPress={handleTabPress} views={tabViews} />
     </View>
   );
 }
