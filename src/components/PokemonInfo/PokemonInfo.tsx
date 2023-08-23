@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import pokemonInfoStyles from './PokemonInfo.styled';
 import Tabs from '../Tabs/Tabs';
 
 export default function PokemonInfo() {
-  const tabs = ['Tab 1', 'Tab 2', 'Tab 3'];
+  const tabs = ['About', 'Base Stats', 'Evolution', 'Moves'];
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   const handleTabPress = (index: number) => {
@@ -15,7 +15,6 @@ export default function PokemonInfo() {
     <View
       key={0}
       style={{
-        backgroundColor: 'cyan',
         flex: 1,
         justifyContent: 'flex-end',
       }}>
@@ -26,6 +25,9 @@ export default function PokemonInfo() {
     </View>,
     <View key={2}>
       <Text>Contenido de Tab 3</Text>
+    </View>,
+    <View key={3}>
+      <Text>Contenido de Tab 4</Text>
     </View>,
   ];
 

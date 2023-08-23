@@ -26,11 +26,11 @@ export default function Pokemon(props: any) {
     })();
   }, []);
 
-  console.log(isLoadingMore);
+  console.log(isLoadingMore && !detailPokemon);
 
   return (
     <ScrollView contentContainerStyle={{flex: 1}}>
-      {isLoadingMore ? (
+      {isLoadingMore && detailPokemon ? (
         <ActivityIndicator size="large" color="#AEAEAE" />
       ) : (
         <SafeAreaView style={{flex: 1}}>
@@ -42,7 +42,7 @@ export default function Pokemon(props: any) {
               detailPokemon?.sprites?.other['official-artwork']?.front_default
             }
             types={[
-              detailPokemon?.types[0].type.name,
+              detailPokemon.types[0].type.name,
               detailPokemon?.types[1]?.type?.name,
             ].filter(Boolean)}
           />

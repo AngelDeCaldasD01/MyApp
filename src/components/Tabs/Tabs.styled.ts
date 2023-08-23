@@ -15,12 +15,15 @@ const tabsStyles = StyleSheet.create({
   },
   activeTab: {
     borderBottomWidth: 2,
-    borderBottomColor: 'blue', // Color de la barra activa
+    borderBottomColor: '#6971b0',
   },
+
   tabText: {
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: 'bold',
   },
+  activeTabText: {color: 'black'},
+  inactiveTabText: {color: '#d2d2d2'},
 });
 
 export default tabsStyles;
