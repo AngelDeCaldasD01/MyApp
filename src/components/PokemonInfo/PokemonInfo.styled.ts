@@ -5,14 +5,21 @@ const desiredWidth = screenWidth * 1 + 60;
 
 const pokemonInfoStyles = StyleSheet.create({
   bg: {
+    width: '100%',
     height: desiredWidth - 487,
     backgroundColor: 'white',
-    padding: 20,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 1,
+  },
+  content: {
+    height: desiredWidth - 487,
+    padding: 20,
     position: 'relative',
     top: -60,
-    zIndex: 4,
+    zIndex: 2,
   },
   tabsContainer: {
     flexDirection: 'row',
@@ -30,6 +37,19 @@ const pokemonInfoStyles = StyleSheet.create({
   },
   tabText: {
     color: 'black',
+  },
+  contentImg: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 115,
+    left: 80,
+    zIndex: 2,
+  },
+  image: {
+    width: 250,
+    height: 300,
+    resizeMode: 'cover',
   },
 });
 

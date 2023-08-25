@@ -1,25 +1,56 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 import pokemonInfoStyles from './PokemonInfo.styled';
 import Tabs from '../Tabs/Tabs';
+import FastImage from 'react-native-fast-image';
 
-export default function PokemonInfo() {
-  const tabs = ['About', 'Base Stats', 'Evolution', 'Moves'];
+interface IPokemonInfo {
+  imageUrl?: string;
+}
+
+export default function PokemonInfo(props: IPokemonInfo) {
+  const {imageUrl} = props;
   const [activeTabIndex, setActiveTabIndex] = useState(0);
 
   const handleTabPress = (index: number) => {
     setActiveTabIndex(index);
   };
 
+  const tabs = ['About', 'Base Stats', 'Evolution', 'Moves'];
   const tabViews = [
-    <View
+    <ScrollView
       key={0}
-      style={{
+      contentContainerStyle={{
         flex: 1,
         justifyContent: 'flex-end',
       }}>
       <Text>Contenido de Tab 1</Text>
-    </View>,
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+      <Text>Contenido de Tab 1</Text>
+    </ScrollView>,
     <View key={1}>
       <Text>Contenido de Tab 2</Text>
     </View>,
@@ -32,8 +63,20 @@ export default function PokemonInfo() {
   ];
 
   return (
-    <View style={pokemonInfoStyles.bg}>
-      <Tabs tabs={tabs} onTabPress={handleTabPress} views={tabViews} />
-    </View>
+    <>
+      <View style={pokemonInfoStyles.bg} />
+      {imageUrl && (
+        <View style={pokemonInfoStyles.contentImg}>
+          <FastImage
+            style={pokemonInfoStyles.image}
+            source={{uri: imageUrl}}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+        </View>
+      )}
+      <SafeAreaView style={pokemonInfoStyles.content}>
+        <Tabs tabs={tabs} onTabPress={handleTabPress} views={tabViews} />
+      </SafeAreaView>
+    </>
   );
 }

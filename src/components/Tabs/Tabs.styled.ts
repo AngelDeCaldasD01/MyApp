@@ -5,6 +5,7 @@ const tabsStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#fff',
+    marginBottom: 20,
   },
   tab: {
     flex: 1,

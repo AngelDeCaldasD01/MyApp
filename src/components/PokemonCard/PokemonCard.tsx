@@ -7,19 +7,30 @@ import cardStyles from './PokemonCard.styled';
 import {getColorByPokemonType} from '../../utils/getColorByPokemonType';
 import {TPOKEMON_TYPE_COLORS} from '../../utils/pokemonTypeColors';
 import {useNavigation} from '@react-navigation/native';
+import pokemonStore from '../../api/PokemonStore';
 
 export default function PokemonCard(props: IPokemon) {
   const {name, order, imageUrl, types} = props;
   const navigation = useNavigation();
+  const {getDetailPokemon} = pokemonStore();
 
   const goToPokemon = () => {
-    Toast.show({
-      text1: `Pokemon: ${name}`,
-      type: 'info',
-      autoHide: true,
-      visibilityTime: 2000,
-    });
-    navigation.navigate('Pokemon', {id: order});
+    (async () => {
+      try {
+        // TODO: Optimizar este trozo de codigo para que no espere a que se cargue el
+        // pokemon, deberia de esperar cuando ya haya navegado, por lo tanto se debería modificar Pokemon.tsx
+        getDetailPokemon(order).then(() =>
+          navigation.navigate('Pokemon' as never),
+        );
+      } catch (error) {
+        Toast.show({
+          text1: `Pokemon: ${name} no ha podido cargarse.`,
+          type: 'info',
+          autoHide: true,
+          visibilityTime: 2000,
+        });
+      }
+    })();
   };
 
   return (
