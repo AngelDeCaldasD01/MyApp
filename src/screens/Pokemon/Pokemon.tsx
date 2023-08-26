@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, SafeAreaView, ScrollView} from 'react-native';
+import {ActivityIndicator, ScrollView} from 'react-native';
 import pokemonStyles from './Pokemon.styles';
 import pokemonStore from '../../api/PokemonStore';
 import PokemonHeader from '../../components/PokemonHeader/PokemonHeader';

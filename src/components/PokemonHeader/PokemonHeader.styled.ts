@@ -53,7 +53,17 @@ const pokemonHeaderStyles = StyleSheet.create({
   },
   spaceImage: {
     width: 250,
+    height: 240,
+  },
+  contentImg: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 2,
+  },
+  image: {
+    width: 250,
     height: 300,
+    resizeMode: 'cover',
   },
 });
 

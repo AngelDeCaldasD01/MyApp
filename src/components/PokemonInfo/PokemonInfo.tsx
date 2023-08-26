@@ -10,7 +10,7 @@ interface IPokemonInfo {
 
 export default function PokemonInfo(props: IPokemonInfo) {
   const {imageUrl} = props;
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [, setActiveTabIndex] = useState(0);
 
   const handleTabPress = (index: number) => {
     setActiveTabIndex(index);
@@ -18,37 +18,8 @@ export default function PokemonInfo(props: IPokemonInfo) {
 
   const tabs = ['About', 'Base Stats', 'Evolution', 'Moves'];
   const tabViews = [
-    <View
-      key={0}
-      style={{
-        justifyContent: 'flex-end',
-      }}>
+    <View key={0}>
       <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 2</Text>
     </View>,
     <View key={1}>
       <Text>Contenido de Tab 2</Text>
@@ -62,20 +33,20 @@ export default function PokemonInfo(props: IPokemonInfo) {
   ];
 
   return (
-    <>
-      {/* <View style={pokemonInfoStyles.bg} /> */}
-      {imageUrl && (
-        <View style={pokemonInfoStyles.contentImg}>
-          <FastImage
-            style={pokemonInfoStyles.image}
-            source={{uri: imageUrl}}
-            resizeMode={FastImage.resizeMode.contain}
-          />
-        </View>
-      )}
-      <SafeAreaView style={pokemonInfoStyles.content}>
+    <View style={pokemonInfoStyles.bg}>
+      <View style={pokemonInfoStyles.content}>
+        {imageUrl && (
+          <View style={pokemonInfoStyles.contentImg}>
+            <FastImage
+              style={pokemonInfoStyles.image}
+              source={{uri: imageUrl}}
+              resizeMode={FastImage.resizeMode.contain}
+            />
+          </View>
+        )}
+        <View style={{height: 20}} />
         <Tabs tabs={tabs} onTabPress={handleTabPress} views={tabViews} />
-      </SafeAreaView>
-    </>
+      </View>
+    </View>
   );
 }
