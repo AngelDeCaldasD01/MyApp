@@ -4,22 +4,24 @@ const screenWidth = Dimensions.get('window').height;
 const desiredWidth = screenWidth * 1 + 60;
 
 const pokemonInfoStyles = StyleSheet.create({
-  bg: {
-    width: '100%',
-    height: desiredWidth - 487,
+  // bg: {
+  //   width: '100%',
+  //   height: desiredWidth - 487,
+  //   backgroundColor: 'white',
+  //   borderTopLeftRadius: 24,
+  //   borderTopRightRadius: 24,
+  //   position: 'absolute',
+  //   bottom: 0,
+  //   zIndex: 1,
+  // },
+  content: {
+    padding: 20,
+    minHeight: desiredWidth - 548,
     backgroundColor: 'white',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
-    position: 'absolute',
-    bottom: 0,
-    zIndex: 1,
-  },
-  content: {
-    height: desiredWidth - 487,
-    padding: 20,
     position: 'relative',
-    top: -60,
-    zIndex: 2,
+    zIndex: 1,
   },
   tabsContainer: {
     flexDirection: 'row',

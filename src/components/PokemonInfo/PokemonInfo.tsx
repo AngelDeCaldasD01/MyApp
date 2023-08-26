@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, SafeAreaView, ScrollView} from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 import pokemonInfoStyles from './PokemonInfo.styled';
 import Tabs from '../Tabs/Tabs';
 import FastImage from 'react-native-fast-image';
@@ -18,10 +18,9 @@ export default function PokemonInfo(props: IPokemonInfo) {
 
   const tabs = ['About', 'Base Stats', 'Evolution', 'Moves'];
   const tabViews = [
-    <ScrollView
+    <View
       key={0}
-      contentContainerStyle={{
-        flex: 1,
+      style={{
         justifyContent: 'flex-end',
       }}>
       <Text>Contenido de Tab 1</Text>
@@ -49,8 +48,8 @@ export default function PokemonInfo(props: IPokemonInfo) {
       <Text>Contenido de Tab 1</Text>
       <Text>Contenido de Tab 1</Text>
       <Text>Contenido de Tab 1</Text>
-      <Text>Contenido de Tab 1</Text>
-    </ScrollView>,
+      <Text>Contenido de Tab 2</Text>
+    </View>,
     <View key={1}>
       <Text>Contenido de Tab 2</Text>
     </View>,
@@ -64,7 +63,7 @@ export default function PokemonInfo(props: IPokemonInfo) {
 
   return (
     <>
-      <View style={pokemonInfoStyles.bg} />
+      {/* <View style={pokemonInfoStyles.bg} /> */}
       {imageUrl && (
         <View style={pokemonInfoStyles.contentImg}>
           <FastImage
